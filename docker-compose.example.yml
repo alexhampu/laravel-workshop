@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  app:
+    environment:
+      AUTOSTART_MIGRATIONS: 0
+      AUTOSTART_QUEUE: 0
+      AUTOSTART_WEBSOCKETS: 0
+    volumes:
+      - ./src:/var/www/html
+    ports:
+      - '36320:80/tcp'
+
+  adminer:
+    image: adminer
+    ports:
+      - '36321:8080/tcp'
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    ports:
+      - '36322:8025/tcp'
