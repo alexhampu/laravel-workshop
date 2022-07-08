@@ -25,8 +25,9 @@
         <div class="space-y-8">
             @foreach($groups as $group)
                 <div class="space-y-4">
-                    <div>{{ $group->name }}</div>
+                    <div class="uppercase font-bold tracking-wide">{{ $group->name }}</div>
 
+                    @if($group->feeds->count())
                     <div class="grid grid-cols-3 gap-5">
                         @foreach($group->feeds as $feed)
                             <div class="border-2 border-primary p-4 space-y-4 rounded-lg">
@@ -53,6 +54,9 @@
                             </div>
                         @endforeach
                     </div>
+                    @else
+                        <p>No feeds have been created.</p>
+                    @endif
                 </div>
             @endforeach
         </div>

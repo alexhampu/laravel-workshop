@@ -1,6 +1,6 @@
 @extends('_layouts.app')
 
-@section('page-title', 'Tokens')
+@section('page-title', 'Create token')
 
 @section('page-actions')
     <a href="{{ route('tokens.index') }}" class="text-white bg-primary hover:bg-primary-light py-2 px-4 rounded-lg flex items-center justify-center gap-1">

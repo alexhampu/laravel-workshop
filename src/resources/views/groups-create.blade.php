@@ -1,11 +1,11 @@
 @extends('_layouts.app')
 
-@section('page-title', 'Groups')
+@section('page-title', 'Create group')
 
 @section('page-actions')
     <a href="{{ route('groups.index') }}" class="text-white bg-primary hover:bg-primary-light py-2 px-4 rounded-lg flex items-center justify-center gap-1">
         <i class="fa-solid fa-list"></i>
-        <span>Groups list</span>
+        <span>Group list</span>
     </a>
 @endsection
 

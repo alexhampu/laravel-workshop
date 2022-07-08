@@ -1,11 +1,11 @@
 @extends('_layouts.app')
 
-@section('page-title', 'Feeds')
+@section('page-title', 'Create feed')
 
 @section('page-actions')
-    <a href="{{ route('feeds.index') }}" class="text-white bg-primary hover:bg-primary-light py-2 px-4 rounded-lg flex items-center justify-center gap-1">
+    <a href="{{ route('groups.index') }}" class="text-white bg-primary hover:bg-primary-light py-2 px-4 rounded-lg flex items-center justify-center gap-1">
         <i class="fa-solid fa-list"></i>
-        <span>Feeds list</span>
+        <span>Group list</span>
     </a>
 @endsection
 
