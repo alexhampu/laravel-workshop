@@ -16,7 +16,7 @@ class GroupController extends Controller
     {
         $groups = Group::all();
 
-        return view('dashboard', compact('groups'));
+        return view('groups-index', compact('groups'));
     }
 
     /**
@@ -37,10 +37,11 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        Group::create([
-            'name' => request('name'),
-            'is_admin' => true
-        ]);
+        $name = request('name');
+
+        Group::create(compact('name'));
+
+        return redirect()->route('groups.index')->with('success', "Group <u>{$name}</u> created successfully");
     }
 
     /**
