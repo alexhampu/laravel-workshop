@@ -91,6 +91,8 @@ class FeedController extends Controller
      */
     public function destroy(Feed $feed)
     {
-        //
+        $feed->delete();
+
+        return redirect()->route('groups.index')->with('success', "Feed <u>{$feed->name}</u> has been deleted");
     }
 }
