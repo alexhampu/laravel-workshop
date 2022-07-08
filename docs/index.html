@@ -77,14 +77,11 @@
 					</section>
 					<section data-auto-animate>
 						<h2>Update <u>vite.config.js</u></h2>
-						<pre><code data-trim data-line-numbers="10">
+						<pre><code data-trim data-line-numbers="7">
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 
 export default defineConfig({
-    server: {
-        host: true
-    },
     plugins: [
         laravel([
             'resources/css/app.css',
@@ -96,14 +93,11 @@ export default defineConfig({
 					</section>
 					<section data-auto-animate>
 						<h2>Update <u>vite.config.js</u></h2>
-						<pre><code data-trim data-line-numbers="10">
+						<pre><code data-trim data-line-numbers="7">
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 
 export default defineConfig({
-    server: {
-        host: true
-    },
     plugins: [
         laravel([
             'resources/scss/app.scss',
@@ -116,7 +110,7 @@ export default defineConfig({
 					<section data-auto-animate>
 						<h2>Setup Vite in template</h2>
 						<p>Update <u>resources/views/welcome.blade.php</u></p>
-						<pre><code data-trim data-line-numbers="13-21"><script type="text/template">
+						<pre><code data-trim data-line-numbers="12-21"><script type="text/template">
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -172,18 +166,7 @@ npx tailwindcss init -p
 						<small><a href="https://tailwindcss.com/docs/guides/laravel">Link to documentation</a></small>
 					</section>
 					<section data-auto-animate>
-						<h2>Configure Tailwind</h2>
-					</section>
-					<section data-auto-animate>
-						<h2>Configure Tailwind</h2>
-						<p>Edit resources/scss/app.scss</p>
-						<pre><code data-trim data-line-numbers>
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
-						</code></pre>
-					</section>
-					<section data-auto-animate>
-						<h2>Update tailwind.config.js</h2>
+						<h2>Update <u>tailwind.config.js</u></h2>
 						<pre><code data-trim data-line-numbers="3">
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -267,9 +250,6 @@ import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 
 export default defineConfig({
-    server: {
-        host: true
-    },
     plugins: [
         laravel([
             'resources/scss/app.scss',
@@ -378,17 +358,37 @@ php artisan ide-helper:models -W
 php artisan ide-helper:meta
 						</code></pre>
 					</section>
-					<section>
-						<h2>Setup autogenerate</h2>
-						<p>Update <u>post-update-cmd</u> section in <u>composer.json</u></p>
+					<section data-auto-animate>
+						<h2>Create command shortcut</h2>
+						<p>Update <u>scripts</u> section in <u>composer.json</u></p>
 						<pre><code data-trim data-line-numbers>
-"post-update-cmd": [
-	"@php artisan vendor:publish --tag=laravel-assets --ansi --force"
-	"@php artisan ide-helper:generate",
-	"@php artisan ide-helper:meta"
-],
+"scripts": {
+	"post-autoload-dump": [
+		"Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+		"@php artisan package:discover --ansi"
+	],
+	...
+},
 						</code></pre>
-						<small>This will execute after installing / updating composer dependencies</small>
+					</section>
+					<section data-auto-animate>
+						<h2>Create command shortcut</h2>
+						<p>Update <u>scripts</u> section in <u>composer.json</u></p>
+						<pre><code data-trim data-line-numbers="2-6">
+"scripts": {
+	"ide-helper": [
+		"@php artisan ide-helper:generate",
+		"@php artisan ide-helper:meta",
+		"@php artisan ide-helper:models -W"
+	],
+	"post-autoload-dump": [
+		"Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+		"@php artisan package:discover --ansi"
+	],
+	...
+},
+						</code></pre>
+						<small>Now you can run <u>composer run ide-helper</u> to run all 3 commands</small>
 					</section>
 				</section>
 				<section>
