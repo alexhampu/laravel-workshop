@@ -114,7 +114,7 @@ export default defineConfig({
 						</code></pre>
 					</section>
 					<section data-auto-animate>
-						<h2>Setup auto-reload</h2>
+						<h2>Setup Vite in template</h2>
 						<p>Update <u>resources/views/welcome.blade.php</u></p>
 						<pre><code data-trim data-line-numbers="13-21"><script type="text/template">
 <!DOCTYPE html>
@@ -142,9 +142,9 @@ export default defineConfig({
 						</script></code></pre>
 					</section>
 					<section data-auto-animate>
-						<h2>Setup auto-reload</h2>
+						<h2>Setup Vite in template</h2>
 						<p>Update <u>resources/views/welcome.blade.php</u></p>
-						<pre><code data-trim data-line-numbers="13"><script type="text/template">
+						<pre><code data-trim data-line-numbers="12"><script type="text/template">
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -156,7 +156,6 @@ export default defineConfig({
 	<!-- Fonts -->
 	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
-	<!-- Styles -->
 	@vite('resources/scss/app.scss')
 </head>
 						</script></code></pre>
@@ -247,6 +246,17 @@ module.exports = {
 						</code></pre>
 					</section>
 					<section data-auto-animate>
+						<h2>Update <u>scss/app.scss</u></h2>
+					</section>
+					<section data-auto-animate>
+						<h2>Update <u>scss/app.scss</u></h2>
+						<pre><code data-trim data-line-numbers="1-3">
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+						</code></pre>
+					</section>
+					<section data-auto-animate>
 						<h2>Setup auto-reload</h2>
 					</section>
 					<section data-auto-animate>
@@ -314,7 +324,22 @@ export default defineConfig({
 						<h1>Libraries</h1>
 					</section>
 					<section>
+						<h2>Laravel Sanctum</h2>
+						<p>Provides a featherweight authentication system for SPAs, mobile applications, and simple, token based APIs</p>
+						<div>
+							<a href="https://laravel.com/docs/9.x/sanctum">Documentation</a>
+						</div>
+					</section>
+					<section>
+						<h2>dg/rss-php</h2>
+						<p>RSS & Atom Feeds for PHP is a very small and easy-to-use library for consuming an RSS and Atom feeds.</p>
+						<div>
+							<a href="https://github.com/dg/rss-php">Github</a>
+						</div>
+					</section>
+					<section>
 						<h2>Laravel Websockets</h2>
+						<p>A package for Laravel that will get your application started with WebSockets in no-time</p>
 						<div>
 							<a href="https://beyondco.de/docs/laravel-websockets/getting-started/introduction">Documentation</a>
 						</div>
@@ -323,16 +348,47 @@ export default defineConfig({
 						</div>
 					</section>
 					<section>
-						<h2>Laravel Sanctum</h2>
+						<h2>Laravel IDE Helper Generator</h2>
+						<p>This package generates helper files that enable your IDE to provide accurate autocompletion</p>
 						<div>
-							<a href="https://laravel.com/docs/9.x/sanctum">Documentation</a>
+							<a href="https://github.com/barryvdh/laravel-ide-helper">Github</a>
 						</div>
 					</section>
+				</section>
+				<section>
 					<section>
-						<h2>SimplePie</h2>
-						<div>
-							<a href="https://github.com/simplepie/simplepie">Github</a>
-						</div>
+						<h1>Setup IDE helper</h1>
+					</section>
+					<section>
+						<h2>Install package</h2>
+						<pre><code data-trim>
+							composer require --dev barryvdh/laravel-ide-helper
+						</code></pre>
+					</section>
+					<section>
+						<h2>Run commands to generate files</h2>
+						<pre><code data-trim data-line-numbers>
+// PHPDoc generation for Laravel Facades
+php artisan ide-helper:generate
+
+// PHPDocs for models
+php artisan ide-helper:models -W
+
+// PhpStorm Meta file
+php artisan ide-helper:meta
+						</code></pre>
+					</section>
+					<section>
+						<h2>Setup autogenerate</h2>
+						<p>Update <u>post-update-cmd</u> section in <u>composer.json</u></p>
+						<pre><code data-trim data-line-numbers>
+"post-update-cmd": [
+	"@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+	"@php artisan ide-helper:generate",
+	"@php artisan ide-helper:meta"
+],
+						</code></pre>
+						<small>This will execute after installing / updating composer dependencies</small>
 					</section>
 				</section>
 				<section>
